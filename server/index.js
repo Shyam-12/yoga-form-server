@@ -9,6 +9,9 @@ require('dotenv').config();
 const PORT = process.env.PORT;
 const app = express();
 
+app.use(bodyParser.json());
+app.use(cors());
+
 // routes
 const enrollmentRoutes = require('./src/routes/enrollmentRoutes');
 
@@ -19,9 +22,6 @@ mongoose.connect(MONGO_URI, {
         useUnifiedTopology: true,  
     } 
 );
-
-app.use(bodyParser.json());
-app.use(cors());
 
 app.use('/api', enrollmentRoutes);
 
